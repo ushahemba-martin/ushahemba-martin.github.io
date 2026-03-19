@@ -202,3 +202,33 @@
   });
 
 })();
+
+/**
+ * Contact form submission with Formspree
+ */
+const contactForm = document.querySelector('#contactForm');
+const successMessage = document.querySelector('#successMessage');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const response = await fetch(contactForm.action, {
+      method: contactForm.method,
+      body: new FormData(contactForm),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      successMessage.style.display = 'block';
+
+      // Clear form after 3 seconds
+      setTimeout(() => {
+        contactForm.reset();
+        successMessage.style.display = 'none'; // optional
+      }, 3000);
+    } else {
+      alert('Oops! Something went wrong. Please try again.');
+    }
+  });
+}
