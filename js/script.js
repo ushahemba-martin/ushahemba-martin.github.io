@@ -443,8 +443,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.ok) {
 
-                formMessage.textContent =
-                    "✓ Message sent successfully! Thank you for reaching out. I'll get back to you soon.";
+                    /* =================================================
+       GOOGLE ANALYTICS — SUCCESSFUL FORM SUBMISSION
+    ================================================= */
+
+    if (typeof gtag === "function") {
+
+        gtag("event", "contact_form_submit", {
+
+            event_category: "conversion",
+
+            event_label: "Successful Contact Form Submission"
+
+        });
+
+    }
+
+
+    formMessage.textContent =
+        "✓ Message sent successfully! Thank you for reaching out. I'll get back to you soon.";
 
                 formMessage.classList.add(
                     "success",
@@ -547,6 +564,129 @@ document.addEventListener("DOMContentLoaded", () => {
             contactSubmit.textContent = "Send Message";
 
         }
+
+    });
+
+});
+
+/* =========================================================
+   GOOGLE ANALYTICS — CUSTOM EVENTS
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =====================================================
+       WORK WITH ME / CONTACT BUTTON
+    ===================================================== */
+
+    const contactButtons = document.querySelectorAll(
+        ".btn-contact"
+    );
+
+    contactButtons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            if (typeof gtag === "function") {
+
+                gtag("event", "contact_click", {
+
+                    event_category: "engagement",
+
+                    event_label: "Work With Me / Contact"
+
+                });
+
+            }
+
+        });
+
+    });
+
+
+    /* =====================================================
+       WHATSAPP
+    ===================================================== */
+
+    const whatsappLinks = document.querySelectorAll(
+        'a[href*="wa.me"], a[href*="whatsapp"]'
+    );
+
+    whatsappLinks.forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            if (typeof gtag === "function") {
+
+                gtag("event", "whatsapp_click", {
+
+                    event_category: "engagement",
+
+                    event_label: "WhatsApp"
+
+                });
+
+            }
+
+        });
+
+    });
+
+
+    /* =====================================================
+       GITHUB
+    ===================================================== */
+
+    const githubLinks = document.querySelectorAll(
+        'a[href*="github.com"]'
+    );
+
+    githubLinks.forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            if (typeof gtag === "function") {
+
+                gtag("event", "github_click", {
+
+                    event_category: "engagement",
+
+                    event_label: "GitHub"
+
+                });
+
+            }
+
+        });
+
+    });
+
+
+    /* =====================================================
+       EMAIL
+    ===================================================== */
+
+    const emailLinks = document.querySelectorAll(
+        'a[href^="mailto:"]'
+    );
+
+    emailLinks.forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            if (typeof gtag === "function") {
+
+                gtag("event", "email_click", {
+
+                    event_category: "engagement",
+
+                    event_label: "Email"
+
+                });
+
+            }
+
+        });
 
     });
 
