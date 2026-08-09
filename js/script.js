@@ -691,3 +691,86 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+// =========================================================
+// BACK TO TOP BUTTON
+// =========================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const backToTop = document.getElementById("back-to-top");
+
+    // Make sure the button exists
+    if (!backToTop) {
+
+        console.error("Back-to-top button was not found.");
+
+        return;
+
+    }
+
+
+    // =====================================================
+    // SHOW / HIDE BUTTON BASED ON SCROLL POSITION
+    // =====================================================
+
+    window.addEventListener("scroll", () => {
+
+        /*
+         * How close the visitor must be to the
+         * bottom before the button appears.
+         *
+         * 500px means:
+         * When the visitor is within 500px of
+         * the bottom of the page, show the button.
+         */
+
+        const bottomOffset = 500;
+
+
+        const distanceFromBottom =
+            document.documentElement.scrollHeight -
+            (window.scrollY + window.innerHeight);
+
+
+        /*
+         * Near the bottom
+         */
+
+        if (distanceFromBottom <= bottomOffset) {
+
+            backToTop.classList.add("show");
+
+        }
+
+
+        /*
+         * Visitor moved away from the bottom
+         */
+
+        else {
+
+            backToTop.classList.remove("show");
+
+        }
+
+    });
+
+
+    // =====================================================
+    // SCROLL BACK TO TOP
+    // =====================================================
+
+    backToTop.addEventListener("click", () => {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    });
+
+});

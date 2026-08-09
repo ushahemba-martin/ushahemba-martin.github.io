@@ -4933,3 +4933,79 @@ MOBILE NAVIGATION MENU
     }
 
 }
+
+/* =====================================================
+   BACK TO TOP BUTTON
+===================================================== */
+
+.back-to-top {
+    position: fixed;
+
+    /* Keep it above the footer text */
+    right: 30px;
+    bottom: 90px;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    font-size: 24px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    z-index: 1000;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* Show button */
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+/* Hover effect */
+.back-to-top:hover {
+    background: #1d4ed8;
+    transform: translateY(-3px);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .back-to-top {
+        right: 18px;
+        bottom: 75px;
+
+        width: 44px;
+        height: 44px;
+
+        font-size: 21px;
+    }
+
+}
